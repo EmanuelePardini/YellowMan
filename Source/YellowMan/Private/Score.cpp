@@ -13,7 +13,7 @@ AScore::AScore()
 	PrimaryActorTick.bCanEverTick = true;
 	Sphere = CreateDefaultSubobject<USphereComponent>("SphereCollider");
 	Sphere->SetupAttachment(RootComponent);
-	//OnActorBeginOverlap.AddDynamic(this, &AScore::OnOverlapBegin);
+	Sphere->OnComponentBeginOverlap.AddDynamic(this, &AScore::OnOverlapBegin);
 }
 
 // Called when the game starts or when spawned
@@ -36,6 +36,5 @@ void AScore::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* Ot
 	UScoreComponent* ScoreComponent = Cast<UScoreComponent>(OtherActor);
 	ScoreComponent->Increment(Value);
 	Destroy();
-	
 }
 
