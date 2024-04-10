@@ -20,10 +20,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	float SpawnTimer = 0.0f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<AActor> ActorToSpawn;
+	TArray<TSubclassOf<AActor>> Spawnables;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	ATriggerBox* SpawnBox;
-	
 	
 protected:
 	// Called when the game starts or when spawned

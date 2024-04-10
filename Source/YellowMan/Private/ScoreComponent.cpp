@@ -35,5 +35,6 @@ void UScoreComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 void UScoreComponent::Increment(int Value)
 {
 	Score += Value;
+	OnScoreChanged.Broadcast(Score);
 }
 

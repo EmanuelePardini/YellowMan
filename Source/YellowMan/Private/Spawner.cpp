@@ -36,12 +36,15 @@ void ASpawner::Tick(float DeltaTime)
 
 void ASpawner::Spawn()
 {
-	if (!ActorToSpawn || !SpawnBox) return;
+	int SpawnableIndex = FMath::RandRange(0,Spawnables.Num()-1);
+	
+	if (!Spawnables[SpawnableIndex] || !SpawnBox) return;
 	
 	// Get a random location within the spawn box
 	FVector SpawnLocation = FMath::RandPointInBox(SpawnBox->GetComponentsBoundingBox());
 
 	// Spawn the actor at the random location
-	GetWorld()->SpawnActor<AActor>(ActorToSpawn, SpawnLocation, FRotator::ZeroRotator);
+	
+	GetWorld()->SpawnActor<AActor>(Spawnables[SpawnableIndex], SpawnLocation, FRotator::ZeroRotator);
 }
 

@@ -17,6 +17,8 @@ public:
 	UScoreComponent();
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int Score = 0;
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnScoreChanged, int, Value);
+	FOnScoreChanged OnScoreChanged;
 
 protected:
 	// Called when the game starts
@@ -27,5 +29,6 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	UFUNCTION()
 	void Increment(int Value);
+
 		
 };

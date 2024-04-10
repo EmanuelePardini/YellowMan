@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
+#include "ScoreComponent.h"
 #include "YellowManCharacter.generated.h"
 
 
@@ -39,6 +40,8 @@ class AYellowManCharacter : public ACharacter
 
 public:
 	AYellowManCharacter();
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UScoreComponent* ScoreComponent;
 	
 
 protected:
@@ -58,6 +61,8 @@ protected:
 	virtual void BeginPlay();
 
 public:
+	UFUNCTION(BlueprintImplementableEvent)
+	void UpdateHUDScore(int NewScore);
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
