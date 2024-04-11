@@ -3,6 +3,8 @@
 
 #include "Enemy.h"
 
+#include "Components/CapsuleComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "YellowMan/YellowManCharacter.h"
 
@@ -11,14 +13,16 @@ AEnemy::AEnemy()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
+	Collider = CreateDefaultSubobject<USphereComponent>("Collider");
+	Collider->SetupAttachment(RootComponent);
+	Collider->OnComponentBeginOverlap.AddDynamic(this, &AEnemy::OnOverlapBegin);
 }
 
 // Called when the game starts or when spawned
 void AEnemy::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	GetCharacterMovement()->MaxWalkSpeed = Speed;
 }
 
 // Called every frame
@@ -33,13 +37,16 @@ void AEnemy::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* Ot
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	AYellowManCharacter* YellowMan = Cast<AYellowManCharacter>(OtherActor);
-	if(YellowMan && YellowMan->VulnerabilityComponent->IsVulnerable)
+	if(YellowMan)
 	{
-		YellowMan->Die();
-	}
-	else
-	{
-		Destroy();
-		YellowMan->ScoreComponent->IncrementEnemyKilled(1);
+		if(YellowMan->VulnerabilityComponent->IsVulnerable)
+		{
+			YellowMan->Die(YellowMan->ScoreComponent->Score, YellowMan->ScoreComponent->EnemyKilled);
+		}
+		else
+		{
+			YellowMan->ScoreComponent->IncrementEnemyKilled(1);
+			Destroy();
+		}
 	}
 }

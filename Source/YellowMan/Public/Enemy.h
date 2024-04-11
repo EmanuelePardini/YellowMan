@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Components/SphereComponent.h"
 #include "GameFramework/Character.h"
 #include "Enemy.generated.h"
 
@@ -14,7 +15,10 @@ class YELLOWMAN_API AEnemy : public ACharacter
 public:
 	// Sets default values for this character's properties
 	AEnemy();
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float Speed;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USphereComponent* Collider;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -22,6 +26,7 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	UFUNCTION()
 	void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 	                    int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 };

@@ -50,6 +50,7 @@ AYellowManCharacter::AYellowManCharacter()
 	//Create components
 	ScoreComponent = CreateDefaultSubobject<UScoreComponent>("ScoreComponent");
 	ScoreComponent->OnScoreChanged.AddDynamic(this, &AYellowManCharacter::UpdateHUDScore);
+	ScoreComponent->OnEnemyKilledChanged.AddDynamic(this, &AYellowManCharacter::UpdateHUDEnemyKilled);
 	VulnerabilityComponent = CreateDefaultSubobject<UVulnerabilityComponent>("VulnerabilityComponent");
 	VulnerabilityComponent->OnVulnerabilityChanged.AddDynamic(this, &AYellowManCharacter::UpdateVulnerable);
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 

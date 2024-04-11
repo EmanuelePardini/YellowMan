@@ -70,7 +70,7 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void UpdateVulnerable(bool NewState);
 	UFUNCTION(BlueprintImplementableEvent)
-	void Die();
+	void Die(int Score, int EnemyKilled);
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
