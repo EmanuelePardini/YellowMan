@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
 #include "ScoreComponent.h"
+#include "VulnerabilityComponent.h"
 #include "YellowManCharacter.generated.h"
 
 
@@ -42,7 +43,8 @@ public:
 	AYellowManCharacter();
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UScoreComponent* ScoreComponent;
-	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UVulnerabilityComponent* VulnerabilityComponent;
 
 protected:
 
@@ -63,6 +65,12 @@ protected:
 public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void UpdateHUDScore(int NewScore);
+	UFUNCTION(BlueprintImplementableEvent)
+	void UpdateHUDEnemyKilled(int NewValue);
+	UFUNCTION(BlueprintImplementableEvent)
+	void UpdateVulnerable(bool NewState);
+	UFUNCTION(BlueprintImplementableEvent)
+	void Die();
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/

@@ -37,6 +37,7 @@ void AScore::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* Ot
 	if(YellowMan)
 	{
 		YellowMan->ScoreComponent->Increment(Value);
+		YellowMan->VulnerabilityComponent->SetIsVulnerable(false, InvulnerabilityDelayAdd);
 		Destroy();
 	}
 }

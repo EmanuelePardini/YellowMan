@@ -19,7 +19,8 @@ public:
 	USphereComponent* Sphere;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int Value = 10;
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int InvulnerabilityDelayAdd = 5.f;
 
 protected:
 	// Called when the game starts or when spawned

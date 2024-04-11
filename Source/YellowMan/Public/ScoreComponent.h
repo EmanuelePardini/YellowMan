@@ -17,8 +17,12 @@ public:
 	UScoreComponent();
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int Score = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	int EnemyKilled = 0;
 	DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnScoreChanged, int, Value);
 	FOnScoreChanged OnScoreChanged;
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnEnemyKilledChanged, int, Value);
+	FOnEnemyKilledChanged OnEnemyKilledChanged;
 
 protected:
 	// Called when the game starts
@@ -29,6 +33,5 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	UFUNCTION()
 	void Increment(int Value);
-
-		
+	void IncrementEnemyKilled(int Value);
 };

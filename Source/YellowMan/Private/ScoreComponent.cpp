@@ -38,3 +38,8 @@ void UScoreComponent::Increment(int Value)
 	OnScoreChanged.Broadcast(Score);
 }
 
+void UScoreComponent::IncrementEnemyKilled(int Value)
+{
+	EnemyKilled += Value;
+	OnEnemyKilledChanged.Broadcast(EnemyKilled);
+}
