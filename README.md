@@ -1,8 +1,8 @@
 # YellowMan
 
 ## Description:
-A PacMan like mini-game made to Test Unreal Engine 5 builds on Android
 ![YellowMan](YellowManBg.png)
+A PacMan like mini-game made to Test Unreal Engine 5 builds on Android
 
 ## Features:
 - Score Component
