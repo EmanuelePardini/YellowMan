@@ -18,7 +18,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	USphereComponent* Sphere;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int Value = 10;
+	int Value = 100;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int InvulnerabilityDelayAdd = 5.f;
 
